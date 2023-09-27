@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Tloc {
     public Tloc() {}
-
+/*
+* asdas
+ */
     public int calculateTloc(String path) {
         int line_count = 0;
-        int com_line_count = 0;
-        int value;
 
         try {
             File file = new File(path);
@@ -18,29 +18,21 @@ public class Tloc {
             while(scan.hasNextLine()) {
                 String line = scan.nextLine();
 
-                if(line.matches("\\s*")) continue;
-
-                boolean isOneLineCom = line.startsWith("//");
-                boolean isMultLineStartCom = line.startsWith("/*");
-                boolean isMultLineMidCom = line.startsWith("*");
-                boolean isMultLineEndCom = line.startsWith("*/") || line.endsWith("*/");
-
-                if(isOneLineCom) ++com_line_count;
-
-                if(isMultLineStartCom) {
-                    if(!isMultLineEndCom) inMultiLineCom = true;
-                    ++com_line_count;
+                if(line.matches("\\s*")) continue; //empty line
+                if(line.matches("\\s*//.*")) continue; //single line comment
+                //start of multiline comments
+                if(line.matches("\\s*/\\*.*")) {
+                    if(line.matches(".*\\*/\\s*")) continue; //ends on same line as start
+                    inMultiLineCom = true;
                 }
-
-                if(inMultiLineCom){ //if(isMultLineMidCom && inMultiLineCom) {
-                    if(isMultLineEndCom) inMultiLineCom = false;
-                    ++com_line_count;
+                if(inMultiLineCom) {
+                    if(line.matches(".*\\*/\\s*")) { //multiline comments ends on that line
+                        inMultiLineCom = false;
+                        continue;
+                    }
+                    continue;
                 }
-
-                if(isMultLineEndCom && inMultiLineCom) {
-                    inMultiLineCom = false;
-                    ++com_line_count;
-                }
+                if(line.matches(".*\\*/\\s*")) continue; //end of multiline comments
 
                 ++line_count;
             }
@@ -49,8 +41,6 @@ public class Tloc {
             e.printStackTrace();
         }
 
-        value = line_count - com_line_count;
-
-        return value;
+        return line_count;
     }
 }
