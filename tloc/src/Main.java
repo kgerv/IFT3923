@@ -4,7 +4,6 @@ public class Main {
         Tloc tloc = new Tloc();
         int tloc_value = tloc.calculate(file_path);
 
-        System.out.print("tloc = ");
         System.out.println(tloc_value);
     }
 }

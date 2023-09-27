@@ -20,9 +20,15 @@ public class Tassert {
                 if(line.matches(".*import static{0,1} org\\.junit\\.Assert\\..+;.*")) assertImported = true;
                 // at least one assert on this line
                 // split line in substtring to check if multiple occurence on same line
-                if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\(.*\\)\\s*;.*")) ++nb_assert;
+                if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\(.*\\)\\s*;.*")) {
+                    ++nb_assert;
+                    System.out.println(line);
+                }
                 // at least one fail() on this line
-                if(line.matches("\\s*(\\w*\\W+)*fail\\w+\\(.*\\)\\s*;.*")) ++nb_assert;
+                if(line.matches("\\s*(\\w*\\W+)*fail\\w+\\(.*\\)\\s*;.*")) {
+                    ++nb_assert;
+                    System.out.println(line);
+                }
             }
             
             scan.close();
