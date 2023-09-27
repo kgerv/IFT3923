@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 public class Tloc {
     public Tloc() {}
-/*
-* asdas
- */
-    public int calculateTloc(String path) {
+
+    public int calculate(String path) {
         int line_count = 0;
 
         try {
@@ -36,6 +34,8 @@ public class Tloc {
 
                 ++line_count;
             }
+            
+            scan.close();
         } catch(FileNotFoundException e) {
             System.out.println("File not found");
             e.printStackTrace();
