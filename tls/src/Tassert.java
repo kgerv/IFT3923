@@ -16,18 +16,37 @@ public class Tassert {
 
             while(scan.hasNextLine()) {
                 String line = scan.nextLine();
-                // JUnit Assert package import fully or in part
-                if(line.matches(".*import static{0,1} org\\.junit\\.Assert\\..+;.*")) assertImported = true;
-                // at least one assert on this line
-                // split line in substtring to check if multiple occurence on same line
-                if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\(.*\\)\\s*;.*")) {
-                    ++nb_assert;
-                    System.out.println(line);
-                }
-                // at least one fail() on this line
-                if(line.matches("\\s*(\\w*\\W+)*fail\\w+\\(.*\\)\\s*;.*")) {
-                    ++nb_assert;
-                    System.out.println(line);
+                // JUnit Assert package import fully or in part, no checks for specific imports
+                if(line.matches(".*import static? org\\.junit\\.Assert\\..+;.*")) assertImported = true;
+
+                if(assertImported) {
+                    // at least one assert on this line
+                    // split line in substring to check if multiple occurrences on same line
+                    if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
+                        ++nb_assert;
+                        System.out.println(line);
+                    }
+                    // at least one fail() on this line
+                    if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(.*\\)\\s*;.*")) {
+                        ++nb_assert;
+                        System.out.println(line);
+                    }
+                    // multiline fail(), case only fail(
+                    if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(\\s*")) {
+                        inMultiLineDec = true;
+                        ++nb_assert;
+                        System.out.println(line);
+                    }
+                } else {
+                    if(line.matches("\\s*(\\w*\\W+)*Assert.assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
+                        ++nb_assert;
+                        System.out.println(line);
+                    }
+                    // at least one fail() on this line
+                    if(line.matches("\\s*(\\w*\\W+)*Assert.fail\\s*\\(.*\\)\\s*;.*")) {
+                        ++nb_assert;
+                        System.out.println(line);
+                    }
                 }
             }
             
