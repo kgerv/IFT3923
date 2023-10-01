@@ -9,6 +9,23 @@ public class Tls {
     public Tls(String path) {
         this.repo_path = path;
         this.tls_values = new ArrayList<>();
+        String filepath, packetname, classname;
+        File directory = new File(path);
+        try{
+            if (directory.exists() && directory.isDirectory()) {
+                File[] files = directory.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.isFile() && file.getName().endsWith(".java")) {
+                            filepath = file.getAbsolutePath();
+                            packetname = file.getClass().getPackageName();
+                            classname = file.getClass().getName();
+                        }
+                    }
+                }
+            }
+        } catch ()
+
     }
 
     public void explorePath() {
