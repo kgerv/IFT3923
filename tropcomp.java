@@ -20,12 +20,14 @@ public class tropcomp{
         List<String> suspectClasses = new ArrayList<>();
         File project = new File(project_path);
         int tlocValue, tassertValue;
+        float tcmp;
         try {
             File[] files = project.listFiles();
             for (File file : files){
                 tlocValue = tloc.calculate(file.getAbsolutePath());
                 tassertValue = tassert.calculate(file.getAbsolutePath());
-                if (tlocValue > seuil && tassertValue > seuil){
+                tcmp = tlocValue/tassertValue;
+                if (tlocValue > seuil && tcmp > seuil){
                     suspectClasses += file.getClass().getName();
                 }
 
