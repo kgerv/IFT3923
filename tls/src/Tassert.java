@@ -23,19 +23,16 @@ public class Tassert {
                     // at least one assert on this line
                     // split line in substring to check if multiple occurrences on same line
                     if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;
-                        System.out.println(line);
+                        ++nb_assert;;
                     }
                     // at least one fail() on this line
                     if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;
-                        System.out.println(line);
+                        ++nb_assert;;
                     }
                     // multiline fail(), case only fail(
                     if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(\\s*")) {
                         inMultiLineDec = true;
-                        ++nb_assert;
-                        System.out.println(line);
+                        ++nb_assert;;
                     }
                 } else {
                     if(line.matches("\\s*(\\w*\\W+)*Assert.assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
@@ -44,8 +41,7 @@ public class Tassert {
                     }
                     // at least one fail() on this line
                     if(line.matches("\\s*(\\w*\\W+)*Assert.fail\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;
-                        System.out.println(line);
+                        ++nb_assert;;
                     }
                 }
             }
