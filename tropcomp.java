@@ -1,5 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class tropcomp{
@@ -8,31 +10,32 @@ public class tropcomp{
     private static List<List<String>> findSuspectClasses(String project_path, int seuil){
         Tls tls = new Tls(project_path);
         data = tls.explorelevel();
-        data.sort(new Comparator<String[]>() {
-            @Override
-            public int compare(String[] v1, String[] v2) {
-                // Parse values at index 3 as integers
-                int tloc = Integer.parseInt(v1[3]);
-                int tloc2 = Integer.parseInt(v2[3]);
 
-                // Compare based on index 3 (integer value)
-                int compareResult = Integer.compare(tloc2, tloc); // Descending order
+        // Sort the array of lists based on values at index 3 (integer value)
+        data.sort(Comparator.comparing(item -> Integer.parseInt(item[3]), Comparator.reverseOrder()));
 
-                if (compareResult == 0) {
-                    // If index 3 values are equal, compare based on index 5 (double value)
-                    double tcmp1 = Double.parseDouble(v1[5]);
-                    double tcmp2 = Double.parseDouble(v2[5]);
-                    return Double.compare(tcmp2, tcmp1); // Descending order
-                }
-
-                return compareResult;
-            }
-        });
-
-
-
-        // Print the sorted data
+        // Filter the sorted list to include only values above seuil for tloc
+        List<String[]> filteredListTloc = new ArrayList<>();
         for (String[] item : data) {
+            int tloc = Integer.parseInt(item[3]);
+            if (tloc >= (seuil / 100.0 * tloc)) {
+                filteredListTloc.add(item);
+            }
+        }
+
+        // Sort the filtered list based on values at index 5 (double value)
+        filteredListTloc.sort(Comparator.comparing(item -> Double.parseDouble(item[5]), Comparator.reverseOrder()));
+
+        // Filter the sorted list to include only values above seuil for tcmp
+        List<String[]> filteredListTcmp = new ArrayList<>();
+        for (String[] item : filteredListIndex3) {
+            double tcmp = Double.parseDouble(item[5]);
+            if (tcmp >= (seuil / 100.0 * tcmp)) {
+                filteredListTcmp.add(item);
+            }
+        }
+        // Print the final filtered list
+        for (String[] item : filteredListIndex5) {
             System.out.println(Arrays.toString(item));
         }
     }
