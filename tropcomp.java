@@ -1,38 +1,47 @@
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class tropcomp{
-    public static void main(String[] args){
-        String project_path = args[0];
-        int seuil = Integer.parseInt(args[1]);
+    private List<String[]> data = new ArrayList<>();
 
-        List<String> suspectClasses = findSuspectClasses(project_path, seuil);
+    private static List<List<String>> findSuspectClasses(String project_path, int seuil){
+        Tls tls = new Tls(project_path);
+        data = tls.explorelevel();
+        data.sort(new Comparator<String[]>() {
+            @Override
+            public int compare(String[] v1, String[] v2) {
+                // Parse values at index 3 as integers
+                int tloc = Integer.parseInt(v1[3]);
+                int tloc2 = Integer.parseInt(v2[3]);
 
-        for (String className : suspectClasses) {
-            System.out.println(className);
-        }
-    }
+                // Compare based on index 3 (integer value)
+                int compareResult = Integer.compare(tloc2, tloc); // Descending order
 
-    private Tloc tloc = new Tloc();
-    private Tassert tassert = new Tassert();
-
-    private static List<String> findSuspectClasses(String project_path, int seuil){
-        List<String> suspectClasses = new ArrayList<>();
-        File project = new File(project_path);
-        int tlocValue, tassertValue;
-        float tcmp;
-        try {
-            File[] files = project.listFiles();
-            for (File file : files){
-                tlocValue = tloc.calculate(file.getAbsolutePath());
-                tassertValue = tassert.calculate(file.getAbsolutePath());
-                tcmp = tlocValue/tassertValue;
-                if (tlocValue > seuil && tcmp > seuil){
-                    suspectClasses += file.getClass().getName();
+                if (compareResult == 0) {
+                    // If index 3 values are equal, compare based on index 5 (double value)
+                    double tcmp1 = Double.parseDouble(v1[5]);
+                    double tcmp2 = Double.parseDouble(v2[5]);
+                    return Double.compare(tcmp2, tcmp1); // Descending order
                 }
 
+                return compareResult;
             }
-        } catch{}
-        return suspectClasses;
+        });
+
+
+
+        // Print the sorted data
+        for (String[] item : data) {
+            System.out.println(Arrays.toString(item));
+        }
     }
 }
+
+
+
+
+
+
+
+
