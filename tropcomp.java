@@ -7,7 +7,7 @@ import java.util.List;
 public class tropcomp{
     private List<String[]> data = new ArrayList<>();
 
-    private static List<List<String>> findSuspectClasses(String project_path, int seuil){
+    private static findSuspectClasses(String project_path, int seuil){
         Tls tls = new Tls(project_path);
         data = tls.explorelevel();
 
