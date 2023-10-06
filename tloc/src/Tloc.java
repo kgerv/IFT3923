@@ -34,7 +34,7 @@ public class Tloc {
 
                 ++line_count;
             }
-            
+
             scan.close();
         } catch(FileNotFoundException e) {
             System.out.println("File not found");

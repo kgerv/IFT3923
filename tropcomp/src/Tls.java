@@ -6,14 +6,12 @@ import java.util.List;
 public class Tls {
     private File dirPath;
     private List<List<String>> tlsValues;
-    private List<String> dirToSkip;
     private Tloc tloc = new Tloc();
     private Tassert tassert = new Tassert();
 
     public Tls(String path) {
         this.dirPath = new File(path);
         this.tlsValues = new ArrayList<>();
-        this.dirToSkip = new ArrayList<>();
         /*
         String filepath, packetname, classname;
         File directory = new File(path);
@@ -41,11 +39,6 @@ public class Tls {
         boolean containsSrc = true;
         boolean containsTest = true;
         boolean containsJava = true;
-        System.out.println("given path: " + this.dirPath.getAbsolutePath());
-        // path to an empty directory
-        if(this.dirPath.getPath().matches(".*\\..*") && files == null) {
-
-        }
 
         // not currently in "src" directory or lower
         if(!this.dirPath.getAbsolutePath().matches(".*\\Wsrc.*")) {
@@ -57,7 +50,6 @@ public class Tls {
                     return this.tlsValues;
                 }
             }
-            //System.out.println("no src dir");
             containsSrc = false;
         }
         // not currently in "test" repository or lower
@@ -70,7 +62,6 @@ public class Tls {
                     return this.tlsValues;
                 }
             }
-            //System.out.println("no test dir");
             containsTest = false;
         }
         // not currently in "java" repository or lower
@@ -83,30 +74,23 @@ public class Tls {
                     return this.tlsValues;
                 }
             }
-            //System.out.println("no java dir");
             containsJava = false;
         }
         // directory does not contains java test file directory following Java & Maven format norms
-        if(!containsJava) {System.out.println("no java file");return this.tlsValues;}
+        if(!containsJava) return this.tlsValues;
 
         for(File f : files) {
             String filePath = f.getPath(); // relative path of the file
-            //System.out.println("file path: " + filePath);
             // file has no extension, it is a directory; explore it and add created entries to tlsValues
             if(!filePath.matches(".*\\..*")) {
-                //System.out.println("no ext");
                 Tls tls = new Tls(filePath);
                 this.tlsValues.addAll(tls.exploreLevel());
-                //System.out.println("no ext explore ret: " + this.tlsValues);
-                return this.tlsValues;
             }
             // not a java file
-            if(!filePath.endsWith(".java")) {
-                System.out.println("not java file");continue;}
+            if(!filePath.endsWith(".java")) continue;
             // is a non-test java file
             if(!filePath.matches(".*\\W(Test)([A-Z]\\w*)+.java") &&
-                    !filePath.matches(".*\\W([A-Z]\\w*)+(Test).java")) {
-                System.out.println("not test file");continue;}
+                    !filePath.matches(".*\\W([A-Z]\\w*)+(Test).java")) continue;
 
             List<String> tlsValuesEntry = new ArrayList<>();
             String absoluteFilePath, packageName = "", className;

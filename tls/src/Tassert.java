@@ -11,7 +11,6 @@ public class Tassert {
         try {
             File file = new File(path);
             Scanner scan = new Scanner(file);
-            boolean inMultiLineDec = false;
             boolean assertImported = false;
 
             while(scan.hasNextLine()) {
@@ -31,13 +30,11 @@ public class Tassert {
                     }
                     // multiline fail(), case only fail(
                     if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(\\s*")) {
-                        inMultiLineDec = true;
                         ++nb_assert;;
                     }
                 } else {
                     if(line.matches("\\s*(\\w*\\W+)*Assert.assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
                         ++nb_assert;
-                        System.out.println(line);
                     }
                     // at least one fail() on this line
                     if(line.matches("\\s*(\\w*\\W+)*Assert.fail\\s*\\(.*\\)\\s*;.*")) {
@@ -45,7 +42,7 @@ public class Tassert {
                     }
                 }
             }
-            
+
             scan.close();
         } catch(FileNotFoundException e) {
             System.out.println("File not found");
