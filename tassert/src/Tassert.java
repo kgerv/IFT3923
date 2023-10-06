@@ -16,7 +16,7 @@ public class Tassert {
             while(scan.hasNextLine()) {
                 String line = scan.nextLine();
                 // JUnit Assert package import fully or in part, no checks for specific imports
-                if(line.matches(".*import static? org\\.junit\\.Assert\\..+;.*")) assertImported = true;
+                if(line.matches(".*import static? org\\.junit\\..*\\.Assert(.*)\\..+;.*")) assertImported = true;
 
                 if(assertImported) {
                     // at least one assert on this line
@@ -42,7 +42,6 @@ public class Tassert {
                     }
                 }
             }
-
             scan.close();
         } catch(FileNotFoundException e) {
             System.out.println("File not found");
