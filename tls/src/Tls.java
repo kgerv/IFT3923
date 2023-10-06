@@ -106,6 +106,7 @@ public class Tls {
             int tlocValue, tassertValue, packNameStart;
             float tcmpValue;
             int fileExtensionIdx = filePath.indexOf(".java");
+
             // Unix system
             int lastIdxSeparator = filePath.lastIndexOf("/");
             // Windows system
@@ -113,11 +114,13 @@ public class Tls {
 
             absoluteFilePath = f.getAbsolutePath();
             className = filePath.substring(lastIdxSeparator + 1, fileExtensionIdx);
+
             tlocValue = tloc.calculate(f);
             tassertValue = tassert.calculate(f);
             // is tassertValue is null we return -1, as to not have Infinity case
             tcmpValue = tassertValue > 0 ? (float)tlocValue / (float)tassertValue : -1;
-            // package name start after ".*/test/java/"
+
+            // package name start after ".*/test/java/" in the path
             packNameStart = absoluteFilePath.indexOf("java") + 5;
             lastIdxSeparator = absoluteFilePath.lastIndexOf("/");
             if(lastIdxSeparator < 0) lastIdxSeparator = absoluteFilePath.lastIndexOf("\\");
