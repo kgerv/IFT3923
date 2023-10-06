@@ -1,10 +1,9 @@
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class tropcomp{
+public class TropComp {
     private List<String[]> data = new ArrayList<>();
 
     private static findSuspectClasses(String project_path, int seuil){
@@ -34,11 +33,3 @@ public class tropcomp{
         }
     }
 }
-
-
-
-
-
-
-
-

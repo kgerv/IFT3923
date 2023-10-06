@@ -37,7 +37,7 @@ public class Tls {
     // explore current directory level and look for test files
     // uses recursion to go into directory inside the current one
     public List<List<String>> exploreLevel() {
-            File[] files = this.dirPath.listFiles();
+        File[] files = this.dirPath.listFiles();
         boolean containsSrc = true;
         boolean containsTest = true;
         boolean containsJava = true;
@@ -98,7 +98,7 @@ public class Tls {
                 Tls tls = new Tls(filePath);
                 this.tlsValues.addAll(tls.exploreLevel());
                 //System.out.println("no ext explore ret: " + this.tlsValues);
-                //return this.tlsValues;
+                return this.tlsValues;
             }
             // not a java file
             if(!filePath.endsWith(".java")) {
@@ -156,7 +156,7 @@ public class Tls {
             }
             output += "\n";
         }
-        
+
         return output;
     }
 
