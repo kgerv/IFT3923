@@ -1,9 +1,11 @@
+import java.io.File;
+
 public class Main {
     public static void main(String[] args) {
-        String file_path = args[0];
+        File startingFile = new File(args[0]);
         Tassert tassert = new Tassert();
-        int tassert_value = tassert.calculate(file_path);
+        int tassertValue = tassert.calculate(startingFile);
 
-        System.out.println(tassert_value);
+        System.out.println(tassertValue);
     }
 }

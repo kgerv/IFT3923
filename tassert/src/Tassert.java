@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Tassert {
     public Tassert() {}
 
-    public int calculate(String path) {
-        int nb_assert = 0;
+    public int calculate(File path) {
+        int nbAssert = 0;
 
         try {
-            File file = new File(path);
+            File file = path;
             Scanner scan = new Scanner(file);
             boolean assertImported = false;
 
@@ -22,23 +22,23 @@ public class Tassert {
                     // at least one assert on this line
                     // split line in substring to check if multiple occurrences on same line
                     if(line.matches("\\s*(\\w*\\W+)*assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;;
+                        ++nbAssert;;
                     }
                     // at least one fail() on this line
                     if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;;
+                        ++nbAssert;;
                     }
                     // multiline fail(), case only fail(
                     if(line.matches("\\s*(\\w*\\W+)*fail\\s*\\(\\s*")) {
-                        ++nb_assert;;
+                        ++nbAssert;;
                     }
                 } else {
                     if(line.matches("\\s*(\\w*\\W+)*Assert.assert[A-Z]\\w+\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;
+                        ++nbAssert;
                     }
                     // at least one fail() on this line
                     if(line.matches("\\s*(\\w*\\W+)*Assert.fail\\s*\\(.*\\)\\s*;.*")) {
-                        ++nb_assert;;
+                        ++nbAssert;;
                     }
                 }
             }
@@ -49,6 +49,6 @@ public class Tassert {
             e.printStackTrace();
         }
 
-        return nb_assert;
+        return nbAssert;
     }
 }

@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Tloc {
     public Tloc() {}
 
-    public int calculate(String path) {
+    public int calculate(File path) {
         int line_count = 0;
 
         try {
-            File file = new File(path);
+            File file = path;
             Scanner scan = new Scanner(file);
             boolean inMultiLineCom = false;
 

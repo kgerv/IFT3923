@@ -1,14 +1,14 @@
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class Tropcomp {
-    private String path;
+    private File path;
     private int threshold;
     private List<List<String>> data;
 
-    public Tropcomp(String path, int threshold) {
+    public Tropcomp(File path, int threshold) {
         this.path = path;
         this.threshold = threshold;
         this.data = new ArrayList<>();
@@ -17,7 +17,6 @@ public class Tropcomp {
     public List<List<String>> findSuspectClasses() {
         Tls tls = new Tls(this.path);
         this.data.addAll(tls.exploreLevel());
-        System.out.println(this.toString());
         int numToKeep = (int)(this.data.size() * (this.threshold / 100.0));
 
         // Sort the array of lists based on values at index 3 (integer value)
@@ -25,14 +24,12 @@ public class Tropcomp {
 
         // Filter the sorted list to include only the elements with tloc values above threshold
         List<List<String>> filteredListTloc = this.data.subList(0, numToKeep);
-        System.out.println(filteredListTloc.toString());
 
         // Sort the array of lists based on values at index 5 (double value)
         data.sort(Comparator.comparing(item -> Double.parseDouble(item.get(5)), Comparator.reverseOrder()));
 
         // Filter the sorted list to include only the element with tcmp values above threshold
         List<List<String>> filteredListTcmp = this.data.subList(0, numToKeep);
-        System.out.println(filteredListTcmp.toString());
 
         // Retain only the items inn common
         filteredListTloc.retainAll(filteredListTcmp);

@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Tloc {
     public Tloc() {}
 
-    public int calculate(String path) {
-        int line_count = 0;
+    public int calculate(File path) {
+        int lineCount = 0;
 
         try {
-            File file = new File(path);
+            File file = path;
             Scanner scan = new Scanner(file);
             boolean inMultiLineCom = false;
 
@@ -32,7 +32,7 @@ public class Tloc {
                 }
                 if(line.matches(".*\\*/\\s*")) continue; //end of multiline comments
 
-                ++line_count;
+                ++lineCount;
             }
 
             scan.close();
@@ -41,6 +41,6 @@ public class Tloc {
             e.printStackTrace();
         }
 
-        return line_count;
+        return lineCount;
     }
 }

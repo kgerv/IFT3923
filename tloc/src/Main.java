@@ -1,9 +1,11 @@
+import java.io.File;
+
 public class Main {
     public static void main(String[] args) {
-        String file_path = args[0];
+        File startingFile = new File(args[0]);
         Tloc tloc = new Tloc();
-        int tloc_value = tloc.calculate(file_path);
+        int tlocValue = tloc.calculate(startingFile);
 
-        System.out.println(tloc_value);
+        System.out.println(tlocValue);
     }
 }

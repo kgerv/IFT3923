@@ -9,8 +9,8 @@ public class Tls {
     private Tloc tloc = new Tloc();
     private Tassert tassert = new Tassert();
 
-    public Tls(String path) {
-        this.dirPath = new File(path);
+    public Tls(File path) {
+        this.dirPath = path;
         this.tlsValues = new ArrayList<>();
         /*
         String filepath, packetname, classname;
@@ -53,7 +53,7 @@ public class Tls {
             // check if current directory contains "src" directory
             for(File f : files) {
                 if(f.getName().compareTo("src") == 0) {
-                    Tls tls = new Tls(f.getPath());
+                    Tls tls = new Tls(f);
                     this.tlsValues = tls.exploreLevel();
                     return this.tlsValues;
                 }
@@ -65,7 +65,7 @@ public class Tls {
             // check if current directory contains "test" directory
             for(File f : files) {
                 if(f.getName().compareTo("test") == 0) {
-                    Tls tls = new Tls(f.getPath());
+                    Tls tls = new Tls(f);
                     this.tlsValues = tls.exploreLevel();
                     return this.tlsValues;
                 }
@@ -77,7 +77,7 @@ public class Tls {
             // check if current directory contains "test" directory
             for(File f : files) {
                 if(f.getName().compareTo("java") == 0) {
-                    Tls tls = new Tls(f.getPath());
+                    Tls tls = new Tls(f);
                     this.tlsValues = tls.exploreLevel();
                     return this.tlsValues;
                 }
@@ -91,7 +91,7 @@ public class Tls {
             String filePath = f.getPath(); // relative path of the file
             // file has no extension, it is a directory; explore it and add created entries to tlsValues
             if(!filePath.matches(".*\\..*")) {
-                Tls tls = new Tls(filePath);
+                Tls tls = new Tls(f);
                 this.tlsValues.addAll(tls.exploreLevel());
             }
             // not a java file
@@ -113,8 +113,8 @@ public class Tls {
 
             absoluteFilePath = f.getAbsolutePath();
             className = filePath.substring(lastIdxSeparator + 1, fileExtensionIdx);
-            tlocValue = tloc.calculate(absoluteFilePath);
-            tassertValue = tassert.calculate(absoluteFilePath);
+            tlocValue = tloc.calculate(f);
+            tassertValue = tassert.calculate(f);
             tcmpValue = (float)tlocValue / (float)tassertValue;
             // package name start after ".*/test/java/"
             packNameStart = absoluteFilePath.indexOf("java") + 5;
@@ -136,8 +136,6 @@ public class Tls {
         return this.tlsValues;
     }
 
-
-
     @Override
     public String toString() {
         String output = ""; // initialize empty String
@@ -151,6 +149,5 @@ public class Tls {
         
         return output;
     }
-
-
+    
 }
