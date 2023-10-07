@@ -32,6 +32,8 @@ public class Tls {
 */
     }
 
+    public Tls() {}
+
     // explore current directory level and look for test files
     // uses recursion to go into directory inside the current one
     public List<List<String>> exploreLevel() {

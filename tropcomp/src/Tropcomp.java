@@ -1,23 +1,30 @@
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Tropcomp {
-    private File path;
+    private File pathIn;
     private int threshold;
     private List<List<String>> data;
     private List<List<String>> tropcompValues;
 
     public Tropcomp(File path, int threshold) {
-        this.path = path;
+        this.pathIn = path;
         this.threshold = threshold;
         this.data = new ArrayList<>();
         this.tropcompValues = new ArrayList<>();
     }
 
+    // empty constructor
+    public Tropcomp() {}
+
     public List<List<String>> findSuspectClasses() {
-        Tls tls = new Tls(this.path);
+        Tls tls = new Tls(this.pathIn);
         this.data.addAll(tls.exploreLevel());
         List<List<String>> dataCopy = new ArrayList<>(this.data);
         double supThreshold = this.data.size() * (this.threshold / 100.0);
