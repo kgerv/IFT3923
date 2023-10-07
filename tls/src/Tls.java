@@ -85,7 +85,7 @@ public class Tls {
                     !filePath.matches(".*\\W([A-Z]\\w*)+(Test).java")) continue;
 
             List<String> tlsValuesEntry = new ArrayList<>(6);
-            String absoluteFilePath, packageName = "", className;
+            String absoluteFilePath, packageName = "", className, relativePath;
             boolean packNameExtracted = false;
             int tlocValue, tassertValue, packNameStart;
             float tcmpValue;
@@ -97,6 +97,7 @@ public class Tls {
             if(lastIdxSeparator < 0) lastIdxSeparator = filePath.lastIndexOf("\\");
 
             absoluteFilePath = f.getAbsolutePath();
+            relativePath = f.getPath()
             className = filePath.substring(lastIdxSeparator + 1, fileExtensionIdx);
 
             tlocValue = tloc.calculate(f);
@@ -112,7 +113,7 @@ public class Tls {
                 packageName = absoluteFilePath.substring(packNameStart, lastIdxSeparator);
 
             // add the values to the List<String> tlsValuesEntry and then to tlsValues
-            tlsValuesEntry.add(absoluteFilePath);
+            tlsValuesEntry.add(relativePath);
             tlsValuesEntry.add(packageName);
             tlsValuesEntry.add(className);
             tlsValuesEntry.add(String.valueOf(tlocValue));
