@@ -37,7 +37,7 @@ public class Tloc {
 
             scan.close();
         } catch(FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("The system cannot find the specified path.");
             e.printStackTrace();
         }
 

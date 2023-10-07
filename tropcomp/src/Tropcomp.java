@@ -55,6 +55,7 @@ public class Tropcomp {
 
     @Override
     public String toString() {
+        if(this.tropcompValues.isEmpty()) return "";
         StringBuilder output = new StringBuilder(); // initialize empty String
         for(List<String> lineContent : this.tropcompValues) {
             for(int i = 0; i < lineContent.size(); i++) {

@@ -12,7 +12,7 @@ public class Main {
                     File startingFile = new File(args[0]);
                     tls = new Tls(startingFile);
                     tls.exploreLevel();
-                } else if(args.length == 3) {
+                } else if(args[0].compareTo("-o") == 0) {
                     File startingFile = new File(args[2]);
                     tls = new Tls(startingFile);
                     try {

@@ -1,38 +1,33 @@
+import com.opencsv.CSVWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.stream.Collectors;
 
-// Conversion modified from CSV from: https://www.baeldung.com/java-csv
+// Conversion to CSV modified from: https://www.geeksforgeeks.org/writing-a-csv-file-in-java-using-opencsv/
 public class CreateCSV {
 
     public CreateCSV() {}
 
-    public String convertLineToCSV(List<String> data) {
-        return data.stream()
-                .map(this::escapeSpecialCharacters)
-                .collect(Collectors.joining(","));
-    }
-
-    public void convertToCSV(File csv, List<List<String>> list) {
+    public static void convertToCSV(File csv, List<List<String>> data) {
         try {
-            PrintWriter pw = new PrintWriter(csv);
-            list.stream()
-                    .map(this::convertLineToCSV)
-                    .forEach(pw::println);
-        } catch(IOException e) {
-            System.out.println("Error while creating CSV file");
+            // create FileWriter object with file as parameter
+            FileWriter outputfile = new FileWriter(csv);
+
+            // create CSVWriter object filewriter object as parameter
+            CSVWriter writer = new CSVWriter(outputfile);
+
+            for(List<String> line : data) {
+                writer.writeNext(line.toArray(new String[6]));
+            }
+
+            // closing writer connection
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println("Error while writing CSV file.");
             e.printStackTrace();
         }
     }
 
-    public String escapeSpecialCharacters(String data) {
-        String escapedData = data.replaceAll("\\R", " ");
-        if (data.contains(",") || data.contains("\"") || data.contains("'")) {
-            data = data.replace("\"", "\"\"");
-            escapedData = "\"" + data + "\"";
-        }
-        return escapedData;
-    }
 }

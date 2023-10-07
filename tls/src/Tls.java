@@ -12,24 +12,6 @@ public class Tls {
     public Tls(File path) {
         this.dirPath = path;
         this.tlsValues = new ArrayList<>();
-        /*
-        String filepath, packetname, classname;
-        File directory = new File(path);
-        try{
-            if (directory.exists() && directory.isDirectory()) {
-                File[] files = directory.listFiles();
-                if (files != null) {
-                    for (File file : files) {
-                        if (file.isFile() && file.getName().endsWith(".java")) {
-                            filepath = file.getPath();
-                            packetname = file.getClass().getPackageName();
-                            classname = file.getClass().getName();
-                        }
-                    }
-                }
-            }
-        } catch (Error e) {}
-*/
     }
 
     public Tls() {}
@@ -102,7 +84,7 @@ public class Tls {
             if(!filePath.matches(".*\\W(Test)([A-Z]\\w*)+.java") &&
                     !filePath.matches(".*\\W([A-Z]\\w*)+(Test).java")) continue;
 
-            List<String> tlsValuesEntry = new ArrayList<>();
+            List<String> tlsValuesEntry = new ArrayList<>(6);
             String absoluteFilePath, packageName = "", className;
             boolean packNameExtracted = false;
             int tlocValue, tassertValue, packNameStart;
