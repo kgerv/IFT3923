@@ -97,7 +97,7 @@ public class Tls {
             if(lastIdxSeparator < 0) lastIdxSeparator = filePath.lastIndexOf("\\");
 
             absoluteFilePath = f.getAbsolutePath();
-            relativePath = f.getPath()
+            relativePath = f.getPath();
             className = filePath.substring(lastIdxSeparator + 1, fileExtensionIdx);
 
             tlocValue = tloc.calculate(f);
