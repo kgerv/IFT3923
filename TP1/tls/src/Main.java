@@ -4,7 +4,14 @@ import java.nio.file.FileSystemNotFoundException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
+        File f = new File("Main.java");
+        System.out.println("exists? "+ f.exists());
+        System.out.println("check: " + "aTest.java".replace("Test",""));
+        File dir  = new File(f.getPath().replace(f.getName(), ""));
+        System.out.println(new File("src").getAbsolutePath());
+        System.out.println(f.lastModified());
+        /*
         if(args.length > 0) {
             Tls tls = new Tls();
             try {
@@ -35,5 +42,6 @@ public class Main {
         } else {
             System.out.println("Expecting 1 or 3 arguments, none received");
         }
+        */
     }
 }

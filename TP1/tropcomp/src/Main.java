@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        args = new String[] {"-o", "C:\\Users\\Killian\\Desktop\\Partie5-10.csv", "C:\\Users\\Killian\\Desktop\\jfreechart-master", "10"};
+        args = new String[] {"-o", "C:\\Users\\Killian\\Desktop\\tassert.csv", "C:\\Users\\Killian\\Desktop\\jfreechart-master", "100"};
         if(args.length > 0) {
             Tropcomp tropcomp = new Tropcomp();
             try {
