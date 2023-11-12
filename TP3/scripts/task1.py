@@ -7,9 +7,9 @@ import pandas as pd
 data = pd.read_csv('TP3/jfreechart-test-stats.csv', sep=',', header=0)
 
 # Extracting column for box plots
-tloc = np.array(data.values[:, 1])
-wmc = np.array(data.values[:, 2])
-tassert = np.array(data.values[:, 3])
+tloc = np.array(data.loc[:,'TLOC'])
+wmc = np.array(data.loc[:,'WMC'])
+tassert = np.array(data.loc[:,'TASSERT'])
  
 # Creating plot: TLOC
 plt.figure(figsize=(9, 3))
