@@ -10,9 +10,6 @@ data = pd.read_csv('TP3/jfreechart-test-stats.csv', sep=',', header=0)
 tloc = np.array(data.values[:, 1])
 wmc = np.array(data.values[:, 2])
 tassert = np.array(data.values[:, 3])
-
-# Create figures
-#fig, ax = plt.subplots(figsize=(10,7))
  
 # Creating plot: TLOC
 plt.figure(figsize=(9, 3))
@@ -38,5 +35,39 @@ plt.xlabel('Values')
 plt.yticks([])
 plt.savefig('TP3/figures/tassert.pdf', bbox_inches='tight')
 
-# show plot
-plt.show()
+# Show plot, muted by default
+# plt.show()
+
+# Calculate the metrics from slide 7 of chapter 7
+# Print the values in command line
+def boxplot_metrics_calculator(data):
+    l = data.quantile(0.25)
+    m = data.quantile(0.5)
+    u = data.quantile(0.75)
+    d = u - l
+    s = u + 1.5*d
+    i = l - 1.5*d
+    min = np.min(data)
+    if i < min:
+        i = min
+
+    print('Lower quartile:\t\t',l)
+    print('Median:\t\t\t',m)
+    print('Upper quartile:\t\t',u)
+    print('Interquartile range:\t',d)
+    print('Lower limit:\t\t',i)
+    print('Upper limit:\t\t',s)
+    return (l,m,u,d,i,s)
+
+print('Box plot metrics for TLOC')
+print('-------------------------')
+tloc_metrics = boxplot_metrics_calculator(data.loc[:,'TLOC'])
+print('-------------------------\n')
+print('Box plot metrics for WMC')
+print('-------------------------')
+wmc_metrics = boxplot_metrics_calculator(data.loc[:,'WMC'])
+print('-------------------------\n')
+print('Box plot metrics for TASSERT')
+print('-------------------------')
+tassert_metrics = boxplot_metrics_calculator(data.loc[:,'TASSERT'])
+print('-------------------------\n')
