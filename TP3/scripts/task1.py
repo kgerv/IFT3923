@@ -12,31 +12,31 @@ wmc = np.array(data.loc[:,'WMC'])
 tassert = np.array(data.loc[:,'TASSERT'])
  
 # Creating plot: TLOC
-plt.figure(figsize=(9, 3))
-plt.boxplot(tloc, vert=False, manage_ticks=True)
+plt.figure(figsize=(3, 5))
+plt.boxplot(tloc, vert=True, manage_ticks=True)
 plt.title('Box plot des TLOC du projet JFreeChart')
-plt.xlabel('Values')
-plt.yticks([])
-plt.savefig('TP3/figures/tloc.pdf', bbox_inches='tight')
+plt.ylabel('Values')
+plt.xticks([])
+plt.savefig('TP3/figures/tloc_boxplot.pdf', bbox_inches='tight')
 
 # Creating plot: WMC
-plt.figure(figsize=(9, 3))
-plt.boxplot(wmc, vert=False, manage_ticks=True)
+plt.figure(figsize=(3, 5))
+plt.boxplot(wmc, vert=True, manage_ticks=True)
 plt.title('Box plot des WMC du projet JFreeChart')
-plt.xlabel('Values')
-plt.yticks([])
-plt.savefig('TP3/figures/wmc.pdf', bbox_inches='tight')
+plt.ylabel('Values')
+plt.xticks([])
+plt.savefig('TP3/figures/wmc_boxplot.pdf', bbox_inches='tight')
 
 # Creating plot: TLOC
-plt.figure(figsize=(9, 3))
-plt.boxplot(tassert, vert=False, manage_ticks=True)
+plt.figure(figsize=(3, 5))
+plt.boxplot(tassert, vert=True, manage_ticks=True)
 plt.title('Box plot des TASSERT du projet JFreeChart')
-plt.xlabel('Values')
-plt.yticks([])
-plt.savefig('TP3/figures/tassert.pdf', bbox_inches='tight')
+plt.ylabel('Values')
+plt.xticks([])
+plt.savefig('TP3/figures/tassert_boxplot.pdf', bbox_inches='tight')
 
 # Show plot, muted by default
-# plt.show()
+plt.show()
 
 # Calculate the metrics from slide 7 of chapter 7
 # Print the values in command line

@@ -14,7 +14,7 @@ def plot_linear_reg(x,y, title, x_label, y_label, path=None, show=False):
     
     model = list(map(line, x))
 
-    plt.figure(figsize=(8, 4))
+    plt.figure(figsize=(10, 10))
     plt.scatter(x, y)
     plt.plot(x, model)
     plt.title(title)
@@ -39,12 +39,18 @@ title = 'Regression lineaire de TASSERT par TLOC'
 x_label = 'TLOC'
 y_label = 'TASSERT'
 path = 'TP3/figures/tloc_tassert_reg.pdf'
-tloc_tassert = plot_linear_reg(tloc, tassert, title, x_label, y_label, path)
+tloc_tassert = plot_linear_reg(tloc, tassert, title, x_label, y_label, path, True)
+print('TASSERT / TLOC LINEAR REGRESSION:')
+print('r = ', tloc_tassert[2])
+print('p = ', tloc_tassert[3])
+
 
 # WMC & TASSERT regression & correlation
 title = 'Regression lineaire de TASSERT par WMC'
 x_label = 'WMC'
 y_label = 'TASSERT'
 path = 'TP3/figures/wmc_tassert_reg.pdf'
-tloc_tassert = plot_linear_reg(wmc, tassert, title, x_label, y_label, path, True)
-
+wmc_tassert = plot_linear_reg(wmc, tassert, title, x_label, y_label, path, True)
+print('TASSERT / WMC LINEAR REGRESSION:')
+print('r = ', wmc_tassert[2])
+print('p = ', wmc_tassert[3])
