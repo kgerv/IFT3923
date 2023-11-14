@@ -1,0 +1,41 @@
+T1:
+Distribution de TLOC:
+L'échantillon de 351 classes, basé sur la métrique TLOC (Taille des lignes de code), présente
+une distribution variée de valeurs. La médiane (m), qui se situe à 83, indique que la moitié des classes
+ont une taille de lignes de code inférieure à cette valeur, et l'autre moitié a une taille supérieure.
+La longueur de la boîte (d) de 78, calculée comme la différence entre le quartile supérieur (u) à 125
+et le quartile inférieur (l) à 47, souligne la dispersion des données centrales. La boîte à moustaches
+montre que 178 des classes se situent entre les limites du premier et du troisième quartile,
+avec une médiane représentant le point central. Les valeurs extrêmes, dépassant les limites supérieures (s)
+et inférieures (i) à 242 et 8 respectivement, suggèrent la présence de classes dont la taille des lignes
+de code est significativement différente de la norme observée. Plus spécifiquement, nous observons 2 classes
+sous la limite inférieure et 31 classes au-dessus de la limite supérieure. Ainsi, la distribution des tailles
+de lignes de code dans cet échantillon présente une variabilité importante, avec des classes ayant des
+dimensions plus extrêmes qui peuvent nécessiter une attention particulière.
+
+Distribution de WMC:
+L'échantillon de 351 classes, évalué selon la métrique WMC (Weighted Methods per Class),
+révèle une distribution concentrée autour de la médiane (m) de 9. Le quartile inférieur (l)
+de 8 et le quartile supérieur (u) de 12 encadrent la moitié centrale des données,
+mettant en évidence une dispersion relativement limitée. La longueur de la boîte (d),
+calculée comme la différence entre u et l, est de 4, soulignant la compacité de
+la distribution des valeurs centrales. La boîte à moustaches montre que 265
+des classes, représentées entre les limites du quartile inférieur et supérieur, ont
+des valeurs de WMC relativement similaires. Les limites supérieure (s) et inférieure (i), fixées
+respectivement à 18 et 7, délimitent les valeurs considérées comme normales. Nous observons
+32 classes situées au-dessus de la limite supérieur, représentées comme des valeurs extremes
+daans le diagramme. En résumé, la distribution des valeurs de WMC dans cet échantillon met en
+évidence une tendance vers une complexité modérée des méthodes par classe, avec une concentration
+significative autour de la médiane.
+
+Distribution de TASSERT:
+L'analyse de la métrique TASSERT sur l'échantillon de 351 classes révèle une distribution étendue
+avec une médiane (m) de 17 un quartile inférieur (l) de 10 et un quartile supérieur (u) de 32.
+La longueur de la boîte (d), calculée comme la différence entre u et l, est de 22, soulignant une
+variabilité modérées dans les valeurs de TASSERT. Notamment, 184 classes se retrouvent dans la boite.
+La boîte à moustaches s'étend de 1 à 65, avec une limite supérieure (s) de 65 et une limite inférieure (i)
+de 1. Cela indique une large gamme de valeurs, avec des classes présentant des niveaux d'assertions
+variés. Nous observons 21 classes situées au-dessus de la limite supérieure, représentées par des
+valeurs extremes dans le diagramme. En résumé, la métrique TASSERT révèle une distribution
+diversifiée des assertions par classe, avec une médiane de 17, et la boîte à moustaches met en
+lumière une variabilité significative.
