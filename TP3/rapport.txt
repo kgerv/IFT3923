@@ -39,3 +39,13 @@ variés. Nous observons 21 classes situées au-dessus de la limite supérieure, 
 valeurs extremes dans le diagramme. En résumé, la métrique TASSERT révèle une distribution
 diversifiée des assertions par classe, avec une médiane de 17, et la boîte à moustaches met en
 lumière une variabilité significative.
+
+T2:
+
+TLOC et TASSERT ont une corrélation de pearson de 0,9893677
+Leur droite de régression linéaire équivaut à y = 0,263x - 3,0919
+Lorsqu'on élimine les valeurs extremes, cela devient y = 0,2699x - 3,5656
+
+WMC et TASSERT ont une corrélation de pearson de 0,9843248
+Leur droite de régression linéaire équivaut à y = 5,2425x - 33,536
+Lorsqu'on élimine les valeurs extremes, cela devient y = 4,9685x - 30,758
