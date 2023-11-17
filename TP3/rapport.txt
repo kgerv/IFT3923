@@ -49,3 +49,23 @@ Lorsqu'on élimine les valeurs extremes, cela devient y = 0,2699x - 3,5656
 WMC et TASSERT ont une corrélation de pearson de 0,9843248
 Leur droite de régression linéaire équivaut à y = 5,2425x - 33,536
 Lorsqu'on élimine les valeurs extremes, cela devient y = 4,9685x - 30,758
+
+T3:
+
+Choix d'étude : quasi-expérience
+1. utilisation du fichier jfreechart-test-stats.csv pour récupérer les valeurs de WMC et TASSERT pour chaque classe
+2. diviser les classes en 2 groupes : celles qui ont plus de 20 assertions et ceux qui ont moins de 20
+3. performer un t-test sur la compléxité(WMC) des 2 groupes
+
+Énoncé des hypothèses :
+- H0 : Il n'y a aucune différence significative de complexité entre les classes ayant
+  plus de 20 assertions et celles qui ont moins de 20
+- H1 : Les classes ayant plus de 20 assertions sont plus complexes que celles qui en ont moins de 20
+
+Définitions des variables :
+- variable indépendante : Nombres d'assertions dans une classe (plus ou moins de 20)
+- variable dependante : mesure de complexité des classes(WMC)
+
+Analyse et interprétation des resultats:
+
+Discussions des menaces a la validité:
