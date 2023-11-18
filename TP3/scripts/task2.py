@@ -41,8 +41,9 @@ y_label = 'TASSERT'
 path = 'TP3/figures/tloc_tassert_reg.pdf'
 tloc_tassert = plot_linear_reg(tloc, tassert, title, x_label, y_label, path, True)
 print('TASSERT / TLOC LINEAR REGRESSION:')
-print('r = ', tloc_tassert[2])
-print('p = ', tloc_tassert[3])
+print(f'Regression equation: y = {tloc_tassert[0]:.3}x + {tloc_tassert[1]:.3}')
+print(f'r = {tloc_tassert[2]:.3}')
+print(f'p = {tloc_tassert[3]:.3}')
 
 
 # WMC & TASSERT regression & correlation
@@ -52,5 +53,6 @@ y_label = 'TASSERT'
 path = 'TP3/figures/wmc_tassert_reg.pdf'
 wmc_tassert = plot_linear_reg(wmc, tassert, title, x_label, y_label, path, True)
 print('TASSERT / WMC LINEAR REGRESSION:')
-print('r = ', wmc_tassert[2])
-print('p = ', wmc_tassert[3])
+print(f'Regression equation: y = {wmc_tassert[0]:.3}x + {wmc_tassert[1]:.3}')
+print(f'r = {wmc_tassert[2]:.3}')
+print(f'p = {wmc_tassert[3]:.3}')
