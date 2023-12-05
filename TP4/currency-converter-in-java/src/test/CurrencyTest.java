@@ -2,10 +2,9 @@ package test;
 
 import org.junit.jupiter.api.Test;
 
-public class MainWindowTest {
+class CurrencyTest {
 
     @Test
-    public void testConvert() {
-
+    void testConvert() {
     }
 }

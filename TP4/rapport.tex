@@ -122,7 +122,34 @@
 \thispagestyle{empty}
 
 \pagebreak
+% Tache 1
+\begin{homeworkProblem}
+    D'après la spécification donnée, on a deux types d'entrées: les devises (\textit{currencies}) et les montants (\textit{amounts}). Soit les devises du programme $P_C$ défini sur \{USD, CAD, GBP, EUR, CHF, AUD\} avec \\$C$ = Currencies = \{USD, CAD, GBP, EUR, CHF, AUD, JPY, INR, NZD\}, cette dernière pourrait être agrandie au besoin, et les montants du programme $P_A$ défini sur [0, 1 000 000], l'intervalle des valeurs valides, avec $A$ = Amounts = Réels.\\
+    \linebreak
+    Il y a deux classes d'équivalences pour les devises:
+    \begin{itemize}
+        \item[$\bullet$] Les valeurs d'entrées valides:\quad $C_1 = P_C =$ \{USD, CAD, GBP, EUR, CHF, AUD\}
+        \item[$\bullet$] Les valeurs d'entrées invalides:\quad $C_2 =$ \{JPY, IRN, NZD\}
+    \end{itemize}
+    On choisit une valeur de chaque classe, pas besoin de plus que cela puique l'échelle est nominale, pour créer notre jeu de test $T_C$ = \{USD, JPY\}.\\
+    \linebreak
+    Pour les montants, il y a trois classes d'équivalences, $a \in \mathbb{R}$:
+    \begin{itemize}
+        \item[$\bullet$] Les valeurs appartenant à $P_A$:\quad $A_1 = \{0 \leq a \leq 1\ 000\ 000\}$
+        \item[$\bullet$] Les valeurs invalides inférieures à $P_A$:\quad $A_2 = \{a < 0\}$
+        \item[$\bullet$] Les valeurs invalides supérieure à $P_A$:\quad $A_3 = \{a > 1\ 000\ 000\}$
+    \end{itemize}
+    On choisit choisit une valeur "typique" dans chaque classe d'équivalence et plusieurs aux bornes de celles-ci pour créer le jeu de test $T_A = \{-2\ 222\ 222, -0.09, 0, 500\ 000, 1\ 000\ 000, 1\ 000\ 000.01, 2\ 222\ 222\}$.\\
 
+    Si une entrée est invalide, on s'attend à ce que le code ne s'arrête pas, il est donc capable de s'adapter à une mauvaise entrée fournie par l'utilisateur, que ce soit pour une devise ou un montant.
+\end{homeworkProblem}
+
+%Tache 2
+\begin{homeworkProblem}
+    
+\end{homeworkProblem}
+
+%Tache 3
 \begin{homeworkProblem}
     
 \end{homeworkProblem}
