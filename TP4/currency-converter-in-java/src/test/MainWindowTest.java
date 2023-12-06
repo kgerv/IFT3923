@@ -4,12 +4,20 @@ import currencyConverter.Currency;
 import currencyConverter.MainWindow;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
 public class MainWindowTest {
 
     @Test
     public void testConvert() {
-        ArrayList<Currency> currencies = Currency.init();
+        ArrayList<Currency> currencies = new ArrayList<>();
+        Currency usd = new Currency("US Dollar", "USD");
+        usd.setExchangeValues("EUR", 0.93);
+
+        Currency eur = new Currency("Euro", "EUR");
+        eur.setExchangeValues("USD", 1.073);
+
+        currencies.add(usd);
+        currencies.add(eur);
 
         assertEquals(-2066666.46, MainWindow.convert("US Dollar", "Euro", currencies, -2222222.0));
         assertEquals(-0.08, MainWindow.convert("US Dollar", "Euro", currencies, -0.09));
