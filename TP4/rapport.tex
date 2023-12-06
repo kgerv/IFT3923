@@ -131,7 +131,7 @@
         \item[$\bullet$] Les valeurs d'entrées valides:\quad $C_1 = P_C =$ \{USD, CAD, GBP, EUR, CHF, AUD\}
         \item[$\bullet$] Les valeurs d'entrées invalides:\quad $C_2 =$ \{JPY, IRN, NZD\}
     \end{itemize}
-    On choisit une valeur de chaque classe, pas besoin de plus que cela puique l'échelle est nominale, pour créer notre jeu de test $T_C$ = \{USD, JPY\}.\\
+    On choisit une valeur de chaque classe, pour pouvoir tester le cas ou l'une des devises est valide tandis que l'autre ne l'est pas, ainsi qu'une seconde valeur de devise valide pour tester les conversion de montant pour créer notre jeu de test $T_C$ = \{USD, EUR, JPY\}.\\
     \linebreak
     Pour les montants, il y a trois classes d'équivalences, $a \in \mathbb{R}$:
     \begin{itemize}
@@ -141,7 +141,7 @@
     \end{itemize}
     On choisit choisit une valeur "typique" dans chaque classe d'équivalence et plusieurs aux bornes de celles-ci pour créer le jeu de test $T_A = \{-2\ 222\ 222, -0.09, 0, 500\ 000, 1\ 000\ 000, 1\ 000\ 000.01, 2\ 222\ 222\}$.\\
 
-    Si une entrée est invalide, on s'attend à ce que le code ne s'arrête pas, il est donc capable de s'adapter à une mauvaise entrée fournie par l'utilisateur, que ce soit pour une devise ou un montant.
+    Si une entrée est invalide, on s'attend à ce que le code ne s'arrête pas, il est donc capable de s'adapter à une mauvaise entrée fournie par l'utilisateur, que ce soit pour une devise ou un montant. On s'attend a ce que ce soit la classe MainWindow qui gère les entrées invalides.
 \end{homeworkProblem}
 
 %Tache 2
