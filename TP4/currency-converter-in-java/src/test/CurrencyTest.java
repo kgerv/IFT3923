@@ -12,7 +12,7 @@ class CurrencyTest {
      * hence the conversion is done here even if it is a border value that is not in the program domain
      */
     @Test
-    void testConvert() {
+    void testConvertBlackBox() {
         assertEquals(-2222222.0*2.0, Currency.convert(-2222222.0, 2.0)); // typical
         assertEquals(-0.09*2.0, Currency.convert(-0.09, 2.0)); // border
         assertEquals(0.0, Currency.convert(0.0, 2.0)); // border

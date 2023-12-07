@@ -13,7 +13,7 @@ public class MainWindowTest {
      * amounts should not. Only currencies in {USD, CAD, GBP, EUR, CHF, AUD} are accepted.
      */
     @Test
-    public void testConvert() {
+    public void testConvertBlackBox() {
         ArrayList<Currency> currencies = new ArrayList<>();
         // assumes that constructor for Currency will not change
         Currency usd = new Currency("US Dollar", "USD");
