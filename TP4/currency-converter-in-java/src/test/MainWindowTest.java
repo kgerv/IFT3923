@@ -27,6 +27,7 @@ public class MainWindowTest {
 
         // testing behavior with unaccepted currency, should not convert
         assertEquals(-1.0 , MainWindow.convert("Japanese Yen", "US Dollar", currencies, 100.0));
+        assertEquals(-1.0 , MainWindow.convert( "US Dollar", "Japanese Yen", currencies, 100.0));
 
         // testing behavior according to amounts
         // typical and border values in [0, 1 000 000], should convert
