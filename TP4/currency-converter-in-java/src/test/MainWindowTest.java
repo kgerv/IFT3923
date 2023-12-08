@@ -42,4 +42,33 @@ public class MainWindowTest {
         assertNotEquals(20666666.46, MainWindow.convert("US Dollar", "Euro", currencies, 2222222.0));
 
     }
+    @Test
+    void testConvertWhiteBox1() {
+        //couverture des instructions
+        ArrayList<Currency> currencies = Currency.init();
+        String currency1 = "US Dollar";
+        String currency2 = "Euro";
+        Double amount = 100.0;
+        Double result = MainWindow.convert(currency1, currency2, currencies, amount);
+        assertEquals(93.0, result);
+    }
+
+    @Test
+    void testConvertWhiteBox2() {
+        //couverture des arcs du graphe du flot de contrôle
+        ArrayList<Currency> currencies = Currency.init();
+        String currency1 = "British Pound";
+        String currency2 = "Swiss Franc";
+        String currency3 = "Japanese Yen";
+        String currency4 = "Chinese Yuan Renminbi";
+        Double amount = 100.0;
+        Double result1 = MainWindow.convert(currency1, currency3, currencies, amount);
+        Double result2 = MainWindow.convert(currency4, currency2, currencies, amount);
+        Double result3 = MainWindow.convert(currency2, currency2, currencies, amount);
+        Double result4 = MainWindow.convert(currency3, currency4, currencies, amount);
+        assertEquals(18641.0, result1);
+        assertEquals(16.0, result2);
+        assertEquals(100.0, result3);
+        assertEquals(5.10, result4);
+    }
 }
