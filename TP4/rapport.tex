@@ -169,7 +169,7 @@
         \hfill\\
         Il n'y a pas le cas où les deux devises ne sont pas dans la liste, puisque si la deuxième ne l'est pas alors la partie du code qui vérifie si la première se trouve dans la liste n'est pas exécutée. On peut donc prendre le jeu de test suivant: \{\{("US Dollar", "Euro") | \textit{currencies = $\emptyset$}\}, \{("US Dollar", "Euro"), ("Australian Dollar", "US Dollar"), ("Euro", "US Dollar") | "US Dollar", "Euro" $\in$ \textit{currencies}\}\}, puisque le dollar australien n'est pas défini dans Currency tandis que les deux autres le sont.\\
         
-        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:] La compléxité cyclomatique est $V(G) = e-n+2 = 18 - 14 + 2 = 1 + d = 1 + 5 = 6$. On définit maintenant une base de 6 chemins indépendants du graphe de flot:
+        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:] La compléxité cyclomatique est\\ $V(G) = e-n+2 = 18 - 14 + 2 = 1 + d = 1 + 5 = 6$. On définit maintenant une base de 6 chemins indépendants du graphe de flot:
         \begin{itemize}
             \item[$\bullet$] 1-2-3-4-8-14: la liste des devises est vide, $D_1$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currencies = $\emptyset$}\}
             \item[$\bullet$] 1-2-3-4-5-4-8-14: $D_2$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currency2} $\not\in$ \textit{currencies}, \textit{currency1} $\in$ \textit{currencies}\}
@@ -187,16 +187,19 @@
         
     Et maintenant, la méthode \textit{convert} de la classe Currency:
     \begin{itemize}
-        \item[\underline{Couverture des instructions}:]\\
+        \item[\underline{Couverture des instructions}:] Tout ensemble de paires de nombres réels va permettre à chaque instruction d'être exécutée au moins une fois. Un jeu de test valide est donc: $T = \{(1234.56, 789)\}$\\
+        
         \item[\underline{Couverture des arcs du graphe de flot de contrôle}:] On obtient le graphe de flôt de controle suivant:
             \begin{figure}[H]\centering
                 \includegraphics[width = .44\linewidth]{control-flow-graph-Currency.png}
                 \caption{Flot de contrôle de la méthode \textit{convert} de la classe Currency}
                 \label{fig:enter-label}
             \end{figure}
-        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:]\\
-        \item[\underline{Couverture des conditions}:]\\
-        \item[\underline{Couverture des i-chemins}:]\\
+        Le critère n'est pas pertient puisque l'on a une simple séquence d'instructions sans branchements de contrôles conditionnels. On peut garder le même jeu de test qu'à l'étape précédente.\\
+        
+        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:] Ici encore, le critère est applicable mais peu pertinent puisque $V(G) = e-n+2 = 3 - 4 + 2 = 1 + d = 1 + 0 = 1$. Il y a donc un unique chemin que l'on suit déjà avec le jeu de test que l'on a définit.\\
+        \item[\underline{Couverture des conditions}:] Non aplicable puisqu'il n'y a pas de conditions dans cette méthode.\\
+        \item[\underline{Couverture des i-chemins}:] Non aplicable puisqu'il n'y a pas de boucles dans cette méthode.\\
     \end{itemize}
     
     
