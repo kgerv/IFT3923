@@ -21,4 +21,13 @@ class CurrencyTest {
         assertEquals(1000000.01*2.0, Currency.convert(1000000.01, 2.0)); // border
         assertEquals(2222222.0*2.0, Currency.convert(2222222.0, 2.0)); // typical
     }
+
+    @Test
+    void testConvertWhiteBox() {
+        //couverture des instructions
+        Double amount = 1234.56;
+        Double exchangeValue = 789.0;
+        assertEquals(amount*exchangeValue, Currency.convert(amount,exchangeValue));
+
+    }
 }
