@@ -59,7 +59,7 @@ public class MainWindowTest {
         // mi = index of currency in currencies list + 1
         // USD to EUR rate is 0.93
         assertEquals(0.93*1000.0, MainWindow.convert(currency1, currency2, currencies,1000.0));
-        
+
         // one currency is not in the list
         assertEquals(0.0, MainWindow.convert(currency3, currency2, currencies,1000.0));
         assertEquals(0.0, MainWindow.convert(currency1, currency3, currencies,1000.0));

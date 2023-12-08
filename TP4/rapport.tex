@@ -124,7 +124,7 @@
 \pagebreak
 % Tache 1
 \begin{homeworkProblem}
-    D'après la spécification donnée, on a deux types d'entrées: les devises (\textit{currencies}) et les montants (\textit{amounts}). Soit les devises du programme $P_C$ défini sur \{USD, CAD, GBP, EUR, CHF, AUD\} avec \\$C$ = Currencies = \{USD, CAD, GBP, EUR, CHF, AUD, JPY, INR, NZD\}, cette dernière pourrait être agrandie au besoin, et les montants du programme $P_A$ défini sur [0, 1 000 000], l'intervalle des valeurs valides, avec $A$ = Amounts = Réels.\\
+    D'après la spécification donnée, on a deux types d'entrées: les devises (\textit{currencies}) et les montants (\textit{amounts}). Soit les devises du programme $P_C$ défini sur \{USD, CAD, GBP, EUR, CHF, AUD\} avec \\$C$ = Currencies = \{USD, CAD, GBP, EUR, CHF, AUD, JPY, INR, NZD\}, cette dernière pourrait être agrandie au besoin, et les montants du programme $P_A$ défini sur [0, 1 000 000], l'intervalle des valeurs valides, avec $A$ = Amounts = Réels positifs.\\
     \linebreak
     Il y a deux classes d'équivalences pour les devises:
     \begin{itemize}
@@ -187,7 +187,7 @@
         
     Et maintenant, la méthode \textit{convert} de la classe Currency:
     \begin{itemize}
-        \item[\underline{Couverture des instructions}:] Tout ensemble de paires de nombres réels va permettre à chaque instruction d'être exécutée au moins une fois. Un jeu de test valide est donc: $T = \{(1234.56, 789)\}$\\
+        \item[\underline{Couverture des instructions}:] Tout ensemble de paires de nombres réels positifs va permettre à chaque instruction d'être exécutée au moins une fois. Un jeu de test valide est donc: $T = \{(1234.56, 789)\}$\\
         
         \item[\underline{Couverture des arcs du graphe de flot de contrôle}:] On obtient le graphe de flôt de controle suivant:
             \begin{figure}[H]\centering
