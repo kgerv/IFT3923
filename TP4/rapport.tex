@@ -146,11 +146,64 @@
 
 %Tache 2
 \begin{homeworkProblem}
+    On va suivre la méthode des 5 critères de sélection de jeux de tests de la méthode boîte blanche dans le but de créer nos jeux de tests, lorsque ceux-ci sont applicables.\\
+    \hfill\\
+    Commençons par la méthode \textit{convert} de la classe MainWindow:
+    \begin{itemize}
+        \item[\underline{Couverture des instructions}:]
+        Puisque les boucles utilisées sont des \textit{for} il suffit que $currencies.size() > 0$ pour que les boucles soient exécutées au moins une fois, avec \textit{currencies} la liste des devises acceptées. Les structures conditionnelles sont toutes des \textit{if}, leur code est exécuté si leur condition est vraie. De plus, on note que le premier et le troisième sont dans les boucles \textit{for}. Le code du premier \textit{if} est exécuté quand \textit{currency2} est dans la liste des devises, même chose pour le code du troisième mais avec \textit{currency1} cette fois. Le code du dernier, qui est en fait le second \textit{if} de la méthode, est exécuté lorsque le code du premier l'a été, ils partagent donc la même classe du domaine. D'après cela, on obtient la classe d'équivalence suivante:\\
+        $D_1$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currencies.size()} > 0\ \&\ \textit{currency1}, \textit{currency2} $\in$ \textit{currencies}\}\\
+        Avec celle-ci, tout le code est exécuté au moins une fois. On peut donc prendre le jeu de test: \{"US Dollar", "Euro"\}, ces deux valeurs étant définies dans la classe Currency.
+        
+        \pagebreak
+        
+        \item[\underline{Couverture des arcs du graphe de flot de contrôle}:] On obtient le graphe de flot contrôle suivant
+        \begin{figure}[H]\centering
+            \includegraphics[width = \linewidth]{control-flow-graph-MainWindow.png}
+        \end{figure}
+        Les numéros correspondent à la ligne de code qui n'est pas un commentaire correspondante dans la méthode, 1 la première ligne après le bracket d'ouverture. On déjà énoncé les conditions qui font que les \textit{if} et les boucles \textit{for} sont exécutés ci-haut. On veut cependant ajouter les cas qui font que leur conditions sont fausses. D'où:\\
+        $D_1$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currencies.size()} > 0 \& \textit{currency1}, \textit{currency2} $\in$ \textit{currencies}\}\\
+        $D_2$ = \{\textit{curr.1}, \textit{curr.2}) | \textit{currencies.size()} = 0\}\\
+        $D_3$ = \{(\textit{currency1}, \textit{currency2})|\textit{currencies.size()} > 0, \textit{currency1}$\not\in$\textit{currencies} \& \textit{currency2}$\in$\textit{currencies}\}
+        $D_4$ = \{(\textit{currency1}, \textit{currency2})|\textit{currencies.size()} > 0, \textit{currency1}$\in$\textit{currencies} \& \textit{currency2}$\not\in$\textit{currencies}\}\\
+        \hfill\\
+        Il n'y a pas le cas où les deux devises ne sont pas dans la liste, puisque si la deuxième ne l'est pas alors la partie du code qui vérifie si la première se trouve dans la liste n'est pas exécutée. On peut donc prendre le jeu de test suivant: \{\{("US Dollar", "Euro") | \textit{currencies = $\emptyset$}\}, \{("US Dollar", "Euro"), ("Australian Dollar", "US Dollar"), ("Euro", "US Dollar") | "US Dollar", "Euro" $\in$ \textit{currencies}\}\}, puisque le dollar australien n'est pas défini dans Currency tandis que les deux autres le sont.\\
+        
+        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:] La compléxité cyclomatique est $V(G) = e-n+2 = 18 - 14 + 2 = 1 + d = 1 + 5 = 6$. On définit maintenant une base de 6 chemins indépendants du graphe de flot:
+        \begin{itemize}
+            \item[$\bullet$] 1-2-3-4-8-14: la liste des devises est vide, $D_1$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currencies = $\emptyset$}\}
+            \item[$\bullet$] 1-2-3-4-5-4-8-14: $D_2$ = \{(\textit{currency1}, \textit{currency2}) | \textit{currency2} $\not\in$ \textit{currencies}, \textit{currency1} $\in$ \textit{currencies}\}
+            \item[$\bullet$] 1-2-3-4-5-6-7-8-9-10-9-14: $D_3$ = \{(\textit{curr.1}, \textit{curr.2}) | \textit{curr.2} $\in$ \textit{currencies}, \textit{curr.1} $\not\in$ \textit{currencies}\}
+            \item[$\bullet$] 1-2-3-4-5-6-7-8-9-10-11-12-13-14: $D_4$ = \{(\textit{curr.1}, \textit{curr.2}) | \textit{curr.2}, \textit{curr.1} $\in$ \textit{currencies}\}
+        \end{itemize}
+        On a utilisé tous les arcs du graphe et il ne reste donc plus de chemins linéairement indépendants. Le jeu de test créer à l'étape précédente répondait déjà à ces critères, on le conserve donc tel quel.\\
+
+        \item[\underline{Couverture des conditions}:] Il n'y a pas de conditions composées dans cette méthode. Ce critère n'est donc pas applicable.\\
+        
+        \item[\underline{Couverture des i-chemins}:] Les deux boucles sont des boucles simples. Il n'y a pas un grand intêret à faire l'ensemble des cas proposées par ce critère puisque le nombre d'itération n'impact pas le résultat. Les cas intéressant sont: on saute la boucle, ce qui se fait lorsque \textit{currencies.size() = 0}, on effectue une $m$ itérations, ce qui arrive lorsque les devises sont dans la liste, la valeur de m n'est pas importante du moment que $0< m < n$, et on effectue n itérations, ce qui "arrive" lorsque l'une des devises n'est pas dans la liste. Or, le jeux de test conçu répond déjà à tout cela. Notre jeu de test le plus couvrant est donc:\\ $T$ = \{\{("US Dollar", "Euro") | \textit{currencies = $\emptyset$}\}, \{("US Dollar", "Euro"), ("Australian Dollar", "US Dollar"), ("Euro", "US Dollar") | "US Dollar", "Euro" $\in$ \textit{currencies}\}\}
+    \end{itemize}
+    
+    \pagebreak
+        
+    Et maintenant, la méthode \textit{convert} de la classe Currency:
+    \begin{itemize}
+        \item[\underline{Couverture des instructions}:]\\
+        \item[\underline{Couverture des arcs du graphe de flot de contrôle}:] On obtient le graphe de flôt de controle suivant:
+            \begin{figure}[H]\centering
+                \includegraphics[width = .44\linewidth]{control-flow-graph-Currency.png}
+                \caption{Flot de contrôle de la méthode \textit{convert} de la classe Currency}
+                \label{fig:enter-label}
+            \end{figure}
+        \item[\underline{Couverture des chemins indépendants du graphe de flot de contrôle}:]\\
+        \item[\underline{Couverture des conditions}:]\\
+        \item[\underline{Couverture des i-chemins}:]\\
+    \end{itemize}
+    
     
 \end{homeworkProblem}
 
 %Tache 3
 \begin{homeworkProblem}
-    
+    On aurait du ajouter une seconde valeur de devise invalide afin de tester le cas de conversion une devise invalide vers une devise invalide
 \end{homeworkProblem}
 \end{document}
